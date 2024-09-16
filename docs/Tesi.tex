@@ -9,7 +9,7 @@
 \usepackage{csquotes}
 \usepackage{graphicx} % Enhanced support for graphics (https://ctan.org/pkg/graphicx)
 \usepackage{framed} % Framed or shaded regions that can break across pages (https://ctan.org/pkg/framed)
-\usepackage[acronyms]{glossaries}
+\usepackage[toc,acronyms]{glossaries}
 \usepackage[font=small,labelfont=bf,tableposition=top]{caption}
 \usepackage[style=numeric,useprefix,hyperref,backend=bibtex,sorting=none]{biblatex} % Sophisticated Bibliographies in LATEX (https://ctan.org/pkg/biblatex)
 \usepackage{listings}
@@ -51,33 +51,7 @@
 % Glossary
 %%%%%%%%%%%%%%%%%%%%%%%%
 \makenoidxglossaries
-\newacronym{did}{DID}{Decentralized IDentifiers}
-\newacronym{der}{DER}{Distributed Energy Resource}
-\newacronym{dsm}{DSM}{Demand Side Management}
-\newacronym{irec}{I-REC}{International Renewable Energy Certificate}
-\newacronym{poa}{PoA}{Proof of Authority}
-\newacronym{pos}{PoS}{Proof of Stake}
-\newacronym{evm}{EVM}{Ethereum Virtual Machine}
-\newacronym{erc}{ERC}{Ethereum Request for Comment}
-\newacronym{ewns}{EWNS}{Energy Web Name Service}
-\newacronym{ewc}{EWC}{Energy Web Chain}
-\newacronym{eac}{EAC}{Energy Attribute Certificate}
-\newacronym{kms}{KMS}{Key Management System}
-\newacronym{spf}{SPO}{Single Point of Failure}
-\newacronym{ipfs}{IPFS}{InterPlanetary File System}
-\newacronym{dht}{DHT}{Distributed Hash Tables}
-\newacronym{sla}{SLA}{Service-Level Agreement}
-\newacronym{tso}{TSO}{Transmission System Operator}
-\newacronym{res}{RES}{Renewable Energy Sources}
-\newacronym{p2p}{P2P}{Peer to Peer}
-\newacronym{ew}{EW}{Energy Web}
-\newacronym{ewdos}{EW-DOS}{Energy Web Decentralized Operating System}
-\newacronym{dapp}{DApp}{Decentralized Application}
-\newacronym{ewt}{EWT}{Energy Web Token}
-\newacronym{iot}{IoT}{Internet of Things}
-\newacronym{ens}{ENS}{Ethereum Name Service}
-\newacronym{ssi}{SSI}{Self Sovereign Identity}
-\newacronym{iam}{IAM}{Identity and Access Management}
+\loadglsentries{glossary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Begin document
@@ -107,17 +81,17 @@
 % Energy web chain
 \input{sections/chapter_3}
 
-% Energy web servizi
+% Energy web services
 \input{sections/chapter_4}
 
-% Chapters
+% Conclusion
 \input{sections/conclusion}
 
-% Chapters
+% Energy Web showcase
 \input{sections/project}
 
-% Bibliografy
-\printnoidxglossary[type=\acronymtype]
-\printbibliography
+% Glossaries and bibliografy
+\printnoidxglossary
+\printbibliography[heading=bibintoc]
 
 \end{document}

@@ -6,18 +6,18 @@
 \section{Energy Web Name Service (EWNS)}
 \label{sec:ewns}
 
-L'\gls{ens} è un sistema di denominazione distribuito, aperto ed estensibile basato sulla blockchain di Ethereum, ed una sua implementazione è stata resa disponibile anche sulla \gls{ewc}. \\
+L'\gls{ens} è un sistema di denominazione distribuito, aperto ed estensibile basato sulla blockchain di Ethereum, ed una sua implementazione è stata resa disponibile anche sulla \gls{ewc}, sotto il nome di \gls{ewns}. \\
 Analogamente a un DNS, gli indirizzi vengono mappati su nomi di dominio facilmente memorizzabili, dando all'utente un'alternativa all'utilizzo degli indirizzi esadecimali. \\
 L'implementazione disponibile pubblicamente consente prevede: indirizzi, indirizzi inversi, hash di dati, definizioni ABI, chiavi pubbliche, interfacce di smart contract e altro \cite{wiki:ewns}.
 
 Per un utente finale il tutto è completamente trasparente. 
-È compito dello sviluppatore di DApp integrare le funzionalità dell'ENS. \\
+È compito dello sviluppatore di DApp integrare le funzionalità dell'\gls{ewns}. \\
 Esistono diverse librerie che già supportano questa funzione, anche se potrebbe essere necessaria qualche patch manuale. \\
-Il procedimento per risolvere un dominio con ENS, comunque, non è particolarmente complicato:
+Il procedimento per risolvere un dominio con \gls{ewns}, comunque, non è particolarmente complicato:
 
 \begin{enumerate}
     \item Normalizzare ed applicare una funzione di hashing sul nome \cite{wiki:ens-normalize-name}.
-    \item Chiamare la funzione resolver() sul registro ENS, passando l'output del passaggio 1. Ciò restituisce l'indirizzo del resolver responsabile del dominio
+    \item Chiamare la funzione resolver() sul registro \gls{ewns}, passando l'output del passaggio 1. Ciò restituisce l'indirizzo del resolver responsabile del dominio
     \item Usando l'interfaccia del resolver, chiamare la funzione addr() sull'indirizzo del resolver restituito nel passaggio 2, passando come parametro l'hash trovato nel passaggio 1. In alternativa, se non si sta cercando un indirizzo, chiamare la funzione dell'interfaccia prevista, ad esempio text()
 \end{enumerate}
 
@@ -26,7 +26,7 @@ Il procedimento per risolvere un dominio con ENS, comunque, non è particolarmen
 
 I \gls{did} sono identificatori univoci usati per realizzare identità digitali verificabili e decentralizzate. Sono la base per l'implementazione delle \gls{ssi} \cite{art:ssi}. \\
 Il soggetto identificato può essere qualsiasi cosa: una persona, un'organizzazione o un bene fisico, per fare qualche esempio. \\
-Un \gls{did} si comporta come un URI e punta ad un DID document, archiviato su un archivio pubblico permanente, come una blockchain.
+Un \gls{did} si comporta come un URI e punta ad un \gls{did-doc}, archiviato su un archivio pubblico permanente, come una blockchain.
 Questo documento contiene tutte le caratteristiche (claims), ad esempio certificazioni o autorizzazioni, che si riferiscono al corrispettivo \gls{did}. \\
 Chiunque può creare un nuovo \gls{did} in qualsiasi momento.
 
@@ -59,7 +59,7 @@ Il soggetto può chiedere a uno di questi emittenti di aggiungere una dichiarazi
 Inoltre, sia l'emittente che il verificatore devono essere in grado di verificare che il soggetto sia effettivamente il proprietario dell'identità. 
 Ciò si ottiene tramite DIDAuth. \\
 Questo processo può assumere molte forme, come specificato nel documento \gls{did}, ma un modo comune è attraverso un challenge inviata dall'emittente o dal verificatore al soggetto, 
-del quale conoscono la chiave pubblica grazie al DID document, che a sua volta risponderà firmando con la propria chiave privata, dimostrando la propria identità.
+del quale conoscono la chiave pubblica grazie al \gls{did-doc}, che a sua volta risponderà firmando con la propria chiave privata, dimostrando la propria identità.
 
 \subsubsection {Analogia con il mondo reale} 
 Si vuole comprare alcool al bar. Per farlo, si deve essere in grado di dimostrare al barista di avere almeno 18 anni. Il barista in questo caso è il verificatore.
@@ -99,13 +99,13 @@ Per implementare un sistema IAM decentralizzato bisogna garantire alcune proprie
 Significa che non esiste alcun attore nel sistema che abbia il potere di limitare selettivamente le informazioni a cui gli altri hanno accesso.
 Questo aspetto è importante perché informazioni riguardanti situazioni casi in cui un'autorizzazione o una chiave è stata revocata o invalidata o se è stata appena concessa un'autorizzazione devono essere disponibili pubblicamente. \\
 Una blockchain, per sua natura, soddisfa questi requisiti. Inoltre, le prove crittografiche contenute nelle transazioni consentono la verifica off-line dei dati.
-Le descrizioni dei ruoli sono contenute in uno smart contract ENS, mentre l'avvenuta concessione di un ruolo e i suoi dettagli è annotata nel documento DID dell'utente, mantenuto off-chain.
+Le descrizioni dei ruoli sono contenute in uno smart contract \gls{ewns}, mentre l'avvenuta concessione di un ruolo e i suoi dettagli è annotata nel documento DID dell'utente, mantenuto off-chain.
 
 \textbf{Le informazioni su utenti e ruoli devono essere riservate.}
 Nella soluzione di Energy Web, nessuna terza parte dispone dell'elenco completo degli utenti di un'applicazione. \\
 Ciò è garantito dal processo di concessione dell'autorizzazione, poiché è l'utente che archivia il claim e ne aggiunge la descrizione sulla blockchain, consentendogli di dimostrare che gli è stato concessa una determinata autorizzazione (\autoref{lab:iam-process}). \\
 Poiché si tratta di una operazione svolta dall'utente stesso, i contenuti del ruolo non sono divulgati \cite{img:iam}.
-L'unica informazione che un osservatore può raccogliere è che l'utente ha aggiunto un claim al proprio DID document, ma non il contenuto, l'origine o la natura del claim. \\
+L'unica informazione che un osservatore può raccogliere è che l'utente ha aggiunto un claim al proprio \gls{did-doc}, ma non il contenuto, l'origine o la natura del claim. \\
 
 \begin{figure}[ht]
     \includegraphics[width=13cm,keepaspectratio]{iam-process.png}
